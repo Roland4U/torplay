@@ -1,0 +1,41 @@
+{
+	"name": "play-torrent",
+	"version": "0.0.1",
+	"description": "Play movies from The Pirate Bay",
+	"main": "index.js",
+	"scripts": {
+		"start": "electron ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/samuelnovaes/play-torrent.git"
+	},
+	"keywords": [
+		"movies",
+		"torrent",
+		"the",
+		"pirate",
+		"bay",
+		"stream",
+		"watch"
+	],
+	"author": "Samuel Novaes <samuel.novaes.96@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/samuelnovaes/play-torrent/issues"
+	},
+	"homepage": "https://samuelnovaes.github.io/playtorrent",
+	"devDependencies": {
+		"electron": "^1.7.10"
+	},
+	"dependencies": {
+		"mime": "^2.1.0",
+		"thepiratebay": "^1.4.6",
+		"vue": "^2.5.13",
+		"webtorrent": "^0.98.20"
+	},
+	"build": {
+		"appId": "com.samuelnovaes.playtorrent",
+		"productName": "Play Torrent"
+	}
+}
