@@ -20,22 +20,21 @@
 			<div class="hbox">
 				<div class="grow"></div>
 				<form @submit="submit">
-					<input type="text" placeholder="Search movie" class="searchfield" v-model="query" autofocus required>&nbsp;
+					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 				<div class="grow"></div>
 			</div>
 			<div class="grow"></div>
 		</div>
-		<div v-else-if="section == 'search'" class="vbox spacing">
-			<div class="hbox">
+		<div v-else-if="section == 'search'" class="vbox">
+			<div class="hbox spacing">
 				<img src="img/logo.png" class="logo-mini" @click="goHome">&nbsp;
 				<form @submit="submit">
-					<input type="text" placeholder="Search movie" class="searchfield" v-model="query" autofocus required>&nbsp;
+					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
-			<br>
 			<div class="vbox">
 				<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
 					<b class="filename">{{file.name}}</b><br>
@@ -46,10 +45,8 @@
 						<b>Upload date:</b> {{file.uploadDate}}<br>
 						<b>Uploader:</b> {{file.uploader}}<br>
 					</div>
-					<br>
 				</div>
 			</div>
-			<span class="link" @click="more">More</span>
 		</div>
 		<div v-if="loading" class="loader-bg">
 			<div class="loader"></div>

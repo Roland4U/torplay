@@ -42,18 +42,18 @@
 	font-family: 'roboto';
 }
 
+::-webkit-scrollbar {
+	width: 5px;
+	background-color: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #008080;
+}
+
 body {
 	background-color: #eee;
-}
-
-.link {
-	text-decoration: none;
-	color: #008080;
-	cursor: pointer;
-}
-
-.link:hover {
-	text-decoration: underline;
+	overflow-x: hidden;
 }
 
 .spacing {
@@ -90,10 +90,11 @@ body {
 
 .card {
 	cursor: pointer;
+	padding: 10px;
 }
 
-.card:hover .filename {
-	text-decoration: underline;
+.card:hover {
+	background-color: #FFF;
 }
 
 .filename {

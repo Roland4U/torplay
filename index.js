@@ -5,11 +5,13 @@ let url = require('url')
 app.on('ready', () => {
 
 	let win = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 640,
+		height: 480,
 		center: true,
 		icon: path.join(__dirname, 'icon.png'),
-		backgroundColor: '#EEEEEE'
+		backgroundColor: '#EEEEEE',
+		title: 'Play Torrent',
+		resizable: false
 	})
 
 	win.loadURL(url.format({

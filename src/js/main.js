@@ -1,6 +1,6 @@
 let Vue = require('vue/dist/vue.min.js')
 let PirateBay = require('thepiratebay')
-let cp = require('child_process')
+let play = require('./js/play.js')
 
 let vm = new Vue({
 	el: '#app',
@@ -9,7 +9,17 @@ let vm = new Vue({
 		page: 0,
 		query: '',
 		section: 'home',
-		loading: false
+		loading: false,
+		lockScroll: false
+	},
+	mounted(){
+		window.document.body.onscroll = () => {
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.section == 'search' && !this.lockScroll) {
+				this.page++
+				this.lockScroll = true
+				this.search()
+			}
+		}
 	},
 	methods: {
 		submit(e){
@@ -19,32 +29,34 @@ let vm = new Vue({
 			e.preventDefault()
 		},
 		search(){
-			this.loading = true
-			PirateBay.search(this.query, {category: 'video', page: this.page}).then(results => {
-				this.files = this.files.concat(results)
+			this.showLoading()
+			PirateBay.search(this.query, {category: [100,200,500], page: this.page}).then(results => {
 				this.section = 'search'
-				this.loading = false
+				this.files = this.files.concat(results)
+				this.lockScroll = false
+				this.hideLoading()
 			}).catch(err => {
-				this.loading = false
-				this.$nextTick(() => {
-					alert('Network error!')
-				})
+				this.lockScroll = false
+				this.hideLoading()
 			})
 		},
-		more(){
-			this.page++
-			this.search()
-		},
 		play(magnet){
-			this.loading = true
-			let vlc = cp.spawn('peerflix', [magnet, '--vlc'])
-			vlc.on('exit', () => {
-				this.loading = false
+			this.showLoading()
+			play(magnet).then(() => {
+				this.hideLoading()
 			})
 		},
 		goHome(){
 			this.query = ''
 			this.section = 'home'
+		},
+		showLoading(){
+			document.body.style['overflow-y'] = 'hidden'
+			this.loading = true
+		},
+		hideLoading(){
+			document.body.style['overflow-y'] = 'auto'
+			this.loading = false
 		}
 	}
 })
