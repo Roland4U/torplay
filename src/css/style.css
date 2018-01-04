@@ -40,6 +40,7 @@
 	user-select: none;
 	-webkit-user-drag: none;
 	font-family: 'roboto';
+	cursor: default;
 }
 
 ::-webkit-scrollbar {
@@ -79,6 +80,7 @@ body {
 
 .searchfield {
 	width: 350px;
+	cursor: text;
 }
 
 .searchbutton {
@@ -99,6 +101,10 @@ body {
 
 .filename {
 	color: #008080;
+}
+
+.error {
+	color: #F00;
 }
 
 .description {

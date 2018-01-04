@@ -13,10 +13,7 @@ function startEngine(uri) {
 function openVlc(engine) {
 	return new Promise((resolve, reject) => {
 		let localHref = `http://localhost:${engine.server.address().port}/`
-		let root = '/Applications/VLC.app/Contents/MacOS/VLC'
-		let home = (process.env.HOME || '') + root
-		let cmd = `vlc ${localHref} || ${root} ${localHref} || ${home} ${localHref}`
-		let vlc = proc.exec(cmd , (error, stdout, stderror) => {
+		let vlc = proc.exec(`vlc ${localHref}` , (error, stdout, stderror) => {
 			if (error) {
 				reject(error)
 			} else {

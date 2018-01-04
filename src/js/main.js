@@ -1,6 +1,7 @@
 let Vue = require('vue/dist/vue.min.js')
 let PirateBay = require('thepiratebay')
 let play = require('./js/play.js')
+let commandExists = require('command-exists')
 
 let vm = new Vue({
 	el: '#app',
@@ -8,7 +9,7 @@ let vm = new Vue({
 		files: [],
 		page: 0,
 		query: '',
-		section: 'home',
+		section: null,
 		loading: false,
 		lockScroll: false
 	},
@@ -20,6 +21,14 @@ let vm = new Vue({
 				this.search()
 			}
 		}
+		commandExists('vlc', (err, exists) => {
+			if(exists){
+				this.section = 'home'
+			}
+			else {
+				this.section = 'vlc'
+			}
+		})
 	},
 	methods: {
 		submit(e){
