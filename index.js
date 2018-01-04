@@ -8,7 +8,8 @@ app.on('ready', () => {
 		width: 800,
 		height: 600,
 		center: true,
-		icon: path.join(__dirname, 'icon.png')
+		icon: path.join(__dirname, 'icon.png'),
+		backgroundColor: '#EEEEEE'
 	})
 
 	win.loadURL(url.format({

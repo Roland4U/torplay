@@ -50,7 +50,6 @@ body {
 	text-decoration: none;
 	color: #008080;
 	cursor: pointer;
-	text-align: center;
 }
 
 .link:hover {
@@ -73,6 +72,7 @@ body {
 }
 
 .searchfield, .searchbutton {
+	border: 1px solid #CCC;
 	padding: 10px;
 	outline: none;
 }
@@ -84,6 +84,8 @@ body {
 .searchbutton {
 	width: 50px;
 	cursor: pointer;
+	background-color: #FFF;
+	color: #555;
 }
 
 .card {
@@ -92,6 +94,10 @@ body {
 
 .card:hover .filename {
 	text-decoration: underline;
+}
+
+.filename {
+	color: #008080;
 }
 
 .description {
@@ -110,33 +116,20 @@ body {
 	height: 100vh;
 }
 
-#player {
-	text-align: center;
-}
-
-#player video {
-	width: 640px;
-	height: 480px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
 .loader {
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	z-index: 1;
-	width: 150px;
-	height: 150px;
-	margin: -75px 0 0 -75px;
+	width: 50px;
+	height: 50px;
+	margin: -25px 0 0 -25px;
 	border: 16px solid #FFF;
 	border-radius: 50%;
 	border-top: 16px solid rgba(0,0,0,0);
 	border-bottom: 16px solid rgba(0,0,0,0);
-	width: 120px;
-	height: 120px;
+	width: 50px;
+	height: 50px;
 	animation: spin .5s linear infinite;
 }
 

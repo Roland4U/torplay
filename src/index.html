@@ -20,7 +20,7 @@
 			<div class="hbox">
 				<div class="grow"></div>
 				<form @submit="submit">
-					<input type="search" placeholder="Search moovie" class="searchfield" v-model="query" autofocus required>&nbsp;
+					<input type="text" placeholder="Search movie" class="searchfield" v-model="query" autofocus required>&nbsp;
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 				<div class="grow"></div>
@@ -31,7 +31,7 @@
 			<div class="hbox">
 				<img src="img/logo.png" class="logo-mini" @click="goHome">&nbsp;
 				<form @submit="submit">
-					<input type="search" placeholder="Search moovie" class="searchfield" v-model="query" autofocus required>&nbsp;
+					<input type="text" placeholder="Search movie" class="searchfield" v-model="query" autofocus required>&nbsp;
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
@@ -50,10 +50,6 @@
 				</div>
 			</div>
 			<span class="link" @click="more">More</span>
-		</div>
-		<div v-else-if="section == 'player'">
-			<div class="link" @click="close">Close</div>
-			<div id="player"></div>
 		</div>
 		<div v-if="loading" class="loader-bg">
 			<div class="loader"></div>

@@ -1,6 +1,6 @@
 {
 	"name": "play-torrent",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Play movies from The Pirate Bay",
 	"main": "index.js",
 	"scripts": {
@@ -29,10 +29,9 @@
 		"electron": "^1.7.10"
 	},
 	"dependencies": {
-		"mime": "^2.1.0",
+		"peerflix": "^0.37.0",
 		"thepiratebay": "^1.4.6",
-		"vue": "^2.5.13",
-		"webtorrent": "^0.98.20"
+		"vue": "^2.5.13"
 	},
 	"build": {
 		"appId": "com.samuelnovaes.playtorrent",

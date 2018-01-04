@@ -1,8 +1,6 @@
 let Vue = require('vue/dist/vue.min.js')
 let PirateBay = require('thepiratebay')
-let WebTorrent = require('webtorrent')
-let mime = require('mime')
-let client
+let cp = require('child_process')
 
 let vm = new Vue({
 	el: '#app',
@@ -27,8 +25,10 @@ let vm = new Vue({
 				this.section = 'search'
 				this.loading = false
 			}).catch(err => {
-				alert(err.toString())
 				this.loading = false
+				this.$nextTick(() => {
+					alert('Network error!')
+				})
 			})
 		},
 		more(){
@@ -36,32 +36,10 @@ let vm = new Vue({
 			this.search()
 		},
 		play(magnet){
-			client = new WebTorrent()
-			this.section = 'player'
 			this.loading = true
-			client.add(magnet, torrent => {
-				let file = torrent.files.find(file => {
-					return /^\w+\/(mp4|webm|ogg)$/.test(mime.getType(file.name))
-				})
-				if(file){
-					this.loading = false
-					file.appendTo('#player')
-				}
-				else {
-					this.close()
-				}
-			})
-		},
-		close(){
-			this.loading = true
-			client.destroy(err => {
+			let vlc = cp.spawn('peerflix', [magnet, '--vlc'])
+			vlc.on('exit', () => {
 				this.loading = false
-				if(err) {
-					alert(err.toString())
-				}
-				else {
-					this.section = 'search'
-				}
 			})
 		},
 		goHome(){
