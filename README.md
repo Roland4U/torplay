@@ -1,5 +1,5 @@
 # play-torrent
-Play movies from The Pirate Bay
+Watch videos from The Pirate Bay
 
 # How to run
 

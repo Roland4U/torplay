@@ -9,29 +9,26 @@
 </head>
 <body>
 	<div id="app">
-		<div v-if="section == 'home'" class="vbox fill">
+		<div v-if="novlc" class="vbox fill">
 			<div class="grow"></div>
 			<div class="hbox">
 				<div class="grow"></div>
-				<img src="img/logo.png" class="logo">
+				<img src="img/vlc.png" class="vlc">
 				<div class="grow"></div>
 			</div>
 			<br>
 			<div class="hbox">
 				<div class="grow"></div>
-				<form @submit="submit">
-					<input type="search" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
-					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
-				</form>
+				<div class="error-vlc">VLC not found</div>
 				<div class="grow"></div>
 			</div>
 			<div class="grow"></div>
 		</div>
-		<div v-else-if="section == 'search'" class="vbox">
-			<div class="hbox spacing">
-				<img src="img/logo.png" class="logo-mini" @click="goHome">&nbsp;
+		<div v-else-if="ready" class="vbox">
+			<div class="hbox searchbar">
+				<img src="img/logo.png" class="logo">&nbsp;
 				<form @submit="submit">
-					<input type="search" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
+					<input type="text" placeholder="Search video" class="searchfield" v-model="query" autofocus>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
@@ -39,29 +36,17 @@
 				<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
 					<b class="filename">{{file.name}}</b><br>
 					<div class="description">
-						<b>Leechers:</b> {{file.leechers}}<br>
-						<b>Seeders:</b> {{file.seeders}}<br>
-						<b>Size:</b> {{file.size}}<br>
-						<b>Upload date:</b> {{file.uploadDate}}<br>
-						<b>Uploader:</b> {{file.uploader}}<br>
+						<b>Leechers</b> {{file.leechers}}<br>
+						<b>Seeders</b> {{file.seeders}}<br>
+						<b>Size</b> {{file.size}}<br>
+						<b>Category</b> {{file.subcategory.name}}<br>
+						<b>Upload date</b> {{file.uploadDate}}<br>
+						<b>Uploader</b> {{file.uploader}}<br>
 					</div>
 				</div>
+				<div v-if="error" class="error">Network error</div>
+				<div v-else-if="files.length == 0 && !loading" class="error">Video not found</div>
 			</div>
-		</div>
-		<div v-if="section == 'vlc'" class="vbox fill">
-			<div class="grow"></div>
-			<div class="hbox">
-				<div class="grow"></div>
-				<img src="img/vlc.png" class="logo">
-				<div class="grow"></div>
-			</div>
-			<br>
-			<div class="hbox">
-				<div class="grow"></div>
-				<h1 class="error">Please, install VLC!</h1>
-				<div class="grow"></div>
-			</div>
-			<div class="grow"></div>
 		</div>
 		<div v-if="loading" class="loader-bg">
 			<div class="loader"></div>

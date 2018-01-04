@@ -9,13 +9,15 @@ let vm = new Vue({
 		files: [],
 		page: 0,
 		query: '',
-		section: null,
+		novlc: false,
 		loading: false,
-		lockScroll: false
+		lockScroll: false,
+		ready: false,
+		error: false,
 	},
 	mounted(){
 		window.document.body.onscroll = () => {
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.section == 'search' && !this.lockScroll) {
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !this.lockScroll && !this.novlc && this.query) {
 				this.page++
 				this.lockScroll = true
 				this.search()
@@ -23,29 +25,43 @@ let vm = new Vue({
 		}
 		commandExists('vlc', (err, exists) => {
 			if(exists){
-				this.section = 'home'
+				this.showLoading()
+				PirateBay.topTorrents(200).then(results => {
+					this.files = this.files.concat(results)
+					this.lockScroll = false
+					this.error = false
+					this.hideLoading()
+				}).catch(err => {
+					this.lockScroll = false
+					this.error = true
+					this.hideLoading()
+				})
 			}
 			else {
-				this.section = 'vlc'
+				this.novlc = true
 			}
+			this.ready = true
 		})
 	},
 	methods: {
 		submit(e){
-			this.page = 0
-			this.files = []
-			this.search()
+			if(this.query){
+				this.page = 0
+				this.files = []
+				this.search()
+			}
 			e.preventDefault()
 		},
 		search(){
 			this.showLoading()
-			PirateBay.search(this.query, {category: [100,200,500], page: this.page}).then(results => {
-				this.section = 'search'
+			PirateBay.search(this.query, {category: 'video', page: this.page}).then(results => {
 				this.files = this.files.concat(results)
 				this.lockScroll = false
+				this.error = false
 				this.hideLoading()
 			}).catch(err => {
 				this.lockScroll = false
+				this.error = true
 				this.hideLoading()
 			})
 		},
@@ -55,16 +71,12 @@ let vm = new Vue({
 				this.hideLoading()
 			})
 		},
-		goHome(){
-			this.query = ''
-			this.section = 'home'
-		},
 		showLoading(){
 			document.body.style['overflow-y'] = 'hidden'
 			this.loading = true
 		},
 		hideLoading(){
-			document.body.style['overflow-y'] = 'auto'
+			document.body.style['overflow-y'] = 'visible'
 			this.loading = false
 		}
 	}
