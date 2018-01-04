@@ -1,6 +1,6 @@
 {
 	"name": "play-torrent",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "Play media from The Pirate Bay",
 	"main": "index.js",
 	"scripts": {
@@ -12,17 +12,18 @@
 	},
 	"keywords": [
 		"audio",
-		"videos",
+		"video",
 		"porn",
-		"movies",
+		"movie",
 		"media",
 		"music",
 		"torrent",
 		"the",
 		"pirate",
 		"bay",
-		"stream",
-		"watch"
+		"streaming",
+		"watch",
+		"listen"
 	],
 	"author": "Samuel Novaes <samuel.novaes.96@gmail.com>",
 	"license": "ISC",
