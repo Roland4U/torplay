@@ -20,7 +20,7 @@
 			<div class="hbox">
 				<div class="grow"></div>
 				<form @submit="submit">
-					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
+					<input type="search" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 				<div class="grow"></div>
@@ -31,7 +31,7 @@
 			<div class="hbox spacing">
 				<img src="img/logo.png" class="logo-mini" @click="goHome">&nbsp;
 				<form @submit="submit">
-					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
+					<input type="search" placeholder="Search media" class="searchfield" v-model="query" autofocus required>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 			</div>

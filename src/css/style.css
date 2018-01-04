@@ -37,10 +37,8 @@
 /*APP*/
 
 * {
-	user-select: none;
 	-webkit-user-drag: none;
 	font-family: 'roboto';
-	cursor: default;
 }
 
 ::-webkit-scrollbar {
@@ -80,7 +78,6 @@ body {
 
 .searchfield {
 	width: 350px;
-	cursor: text;
 }
 
 .searchbutton {
@@ -113,7 +110,7 @@ body {
 }
 
 .loader-bg {
-	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.8);
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -131,10 +128,10 @@ body {
 	width: 50px;
 	height: 50px;
 	margin: -25px 0 0 -25px;
-	border: 16px solid #FFF;
+	border: 5px solid #FFF;
 	border-radius: 50%;
-	border-top: 16px solid rgba(0,0,0,0);
-	border-bottom: 16px solid rgba(0,0,0,0);
+	border-top: 5px solid rgba(0,0,0,0);
+	border-bottom: 5px solid rgba(0,0,0,0);
 	width: 50px;
 	height: 50px;
 	animation: spin .5s linear infinite;
