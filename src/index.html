@@ -26,7 +26,7 @@
 		</div>
 		<div v-else-if="ready" class="vbox">
 			<div class="hbox searchbar">
-				<img src="img/logo.png" class="logo">&nbsp;
+				<img src="img/logo.png" class="logo">
 				<form @submit="submit">
 					<input type="text" placeholder="Search video" class="searchfield" v-model="query" autofocus>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
@@ -34,18 +34,17 @@
 			</div>
 			<div class="vbox">
 				<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
-					<b class="filename">{{file.name}}</b><br>
+					<span class="filename">{{file.name}}</span><br>
 					<div class="description">
-						<b>Leechers</b> {{file.leechers}}<br>
-						<b>Seeders</b> {{file.seeders}}<br>
-						<b>Size</b> {{file.size}}<br>
-						<b>Category</b> {{file.subcategory.name}}<br>
-						<b>Upload date</b> {{file.uploadDate}}<br>
-						<b>Uploader</b> {{file.uploader}}<br>
+						<span class="file-info">Leechers</span> {{file.leechers}}<br>
+						<span class="file-info">Seeders</span> {{file.seeders}}<br>
+						<span class="file-info">Size</span> {{file.size}}<br>
+						<span class="file-info">Category</span> {{file.subcategory.name}}<br>
+						<span class="file-info">Upload date</span> {{file.uploadDate}}<br>
+						<span class="file-info">Uploader</span> {{file.uploader}}<br>
 					</div>
 				</div>
 				<div v-if="error" class="error">Network error</div>
-				<div v-else-if="files.length == 0 && !loading" class="error">Video not found</div>
 			</div>
 		</div>
 		<div v-if="loading" class="loader-bg">

@@ -24,20 +24,7 @@ let vm = new Vue({
 			}
 		}
 		commandExists('vlc', (err, exists) => {
-			if(exists){
-				this.showLoading()
-				PirateBay.topTorrents(200).then(results => {
-					this.files = this.files.concat(results)
-					this.lockScroll = false
-					this.error = false
-					this.hideLoading()
-				}).catch(err => {
-					this.lockScroll = false
-					this.error = true
-					this.hideLoading()
-				})
-			}
-			else {
+			if(!exists) {
 				this.novlc = true
 			}
 			this.ready = true
