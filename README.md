@@ -1,4 +1,4 @@
-# play-torrent
+# Play Torrent
 Watch videos from The Pirate Bay
 
 ![Play Torrent](https://raw.githubusercontent.com/samuelnovaes/play-torrent/master/assets/screenshot.png)
