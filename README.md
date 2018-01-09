@@ -7,8 +7,6 @@ Watch videos from The Pirate Bay
 
 - Install [VLC](https://www.videolan.org/vlc)
 - Download and install Play Torrent
-	- [Windows installer](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0.0/Play.Torrent.Setup.1.0.0.exe)
-	- [Linux DEB 32 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0.0/play-torrent_1.0.0_i386.deb)
-	- [Linux DEB 64 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0.0/play-torrent_1.0.0_amd64.deb)
-
-> On Windows, you must add the VLC installation directory to the Path environment variable.
+	- [Windows installer](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/Play.Torrent.Setup.1.0.1.exe)
+	- [Linux 32 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.1-i386.AppImage)
+	- [Linux 64 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.1-x86_64.AppImage)
