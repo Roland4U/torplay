@@ -1,5 +1,6 @@
-let peerflix = require("peerflix")
-let proc = require("child_process")
+let peerflix = require('peerflix')
+let cp = require('child_process')
+let command = require('vlc-command')
 
 function startEngine(uri) {
 	return new Promise((resolve, reject) => {
@@ -13,11 +14,29 @@ function startEngine(uri) {
 function openVlc(engine) {
 	return new Promise((resolve, reject) => {
 		let localHref = `http://localhost:${engine.server.address().port}/`
-		let vlc = proc.exec(`vlc ${localHref}` , (error, stdout, stderror) => {
-			if (error) {
-				reject(error)
-			} else {
-				resolve()
+		command((err, cmd) => {
+			if(err){
+				reject(err)
+			}
+			else {
+				if(process.platform === 'win32') {
+					cp.execFile(cmd, [localHref], (err, stdout) => {
+						if (err) {
+							reject(err)
+						} else {
+							resolve()
+						}
+					})
+				}
+				else {
+					cp.exec(`${cmd} ${localHref}`, (err, stdout) => {
+						if (err) {
+							reject(err)
+						} else {
+							resolve()
+						}
+					})
+				}
 			}
 		})
 	})
