@@ -27,9 +27,6 @@ let vm = new Vue({
 			if(err){
 				this.novlc = true
 			}
-			else {
-				console.log(cmd)
-			}
 			this.ready = true
 		})
 	},
