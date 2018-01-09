@@ -27,7 +27,9 @@ module.exports = (uri) => {
 	return new Promise((resolve, reject) => {
 		startEngine(uri).then(engine => {
 			openVlc(engine).then(() => {
-				resolve()
+				engine.destroy(() => {
+					resolve()
+				})
 			})
 		})
 	})
