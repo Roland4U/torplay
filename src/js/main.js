@@ -35,16 +35,16 @@ let vm = new Vue({
 			e.preventDefault()
 		},
 		search(){
-			this.loading = true
+			this.showLoading()
 			search(this.query, this.page).then(results => {
 				this.files = this.files.concat(results)
 				this.error = false
-				this.loading = false
+				this.hideLoading()
 				getMoreBtn()
 			})
 			.catch(err => {
 				this.error = true
-				this.loading = false
+				this.hideLoading()
 				getMoreBtn()
 			})
 			let getMoreBtn = () => {
@@ -56,14 +56,22 @@ let vm = new Vue({
 			}
 		},
 		play(magnet){
-			this.loading = true
+			this.showLoading()
 			play(magnet).then(() => {
-				this.loading = false
+				this.hideLoading()
 			})
 		},
 		loadMore(){
 			this.page++
 			this.search()
+		},
+		hideLoading(){
+			this.loading = false
+			document.body.style['overflow-y'] = 'visible'
+		},
+		showLoading(){
+			this.loading = true
+			document.body.style['overflow-y'] = 'hidden'
 		}
 	}
 })
