@@ -7,6 +7,7 @@ Play media from The Pirate Bay
 
 - Install [VLC](https://www.videolan.org/vlc)
 - Download Play Torrent for your platform
-	- [Windows installer](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/Play.Torrent.Setup.1.0.1.exe)
-	- [Linux 32 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.1-i386.AppImage)
-	- [Linux 64 bits](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.1-x86_64.AppImage)
+	- [Windows (Installer)](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/Play.Torrent.Setup.1.0.2.exe)
+	- [Linux 32 bits (AppImage)](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.2-i386.AppImage)
+	- [Linux 64 bits (AppImage)](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/play-torrent-1.0.2-x86_64.AppImage)
+	- [Mac OS X (DMG)](https://github.com/samuelnovaes/play-torrent/releases/download/v1.0/Play.Torrent-1.0.2.dmg)
