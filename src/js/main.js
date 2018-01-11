@@ -61,8 +61,10 @@ let vm = new Vue({
 			})
 		},
 		loadMore(){
-			this.page++
-			this.search()
+			if(this.query){
+				this.page++
+				this.search()
+			}
 		}
 	}
 })
