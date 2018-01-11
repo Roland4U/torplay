@@ -3,12 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>Play Torrent</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style media="screen">
 	* {
 		font-family: custom, arial, sans-serif;
-	}
-	body {
-		background-color: #000;
 	}
 	a {
 		color: #007070;
@@ -19,14 +17,24 @@
 	}
 	fieldset {
 		width: 0;
+		height: 100%;
 		margin: 0 auto;
-		border: none;
+		border: 1px solid #bbb;
 		background-color: #eee;
 		color: #333;
+		padding: 10px;
 	}
 	@font-face {
 		font-family: custom;
 		src: url(fonts/roboto.ttf);
+	}
+	@media only screen and (max-width: 666px) {
+		fieldset {
+			width: calc(100% - 20px);
+		}
+		#screenshot {
+			width: 100%;
+		}
 	}
 	</style>
 </head>
@@ -34,7 +42,7 @@
 	<fieldset>
 		<h1 id="play-torrent">Play Torrent</h1>
 		<p>Play media from The Pirate Bay</p>
-		<p><img src="https://raw.githubusercontent.com/samuelnovaes/play-torrent/master/assets/screenshot.png" alt="Play Torrent"></p>
+		<p><img src="https://raw.githubusercontent.com/samuelnovaes/play-torrent/master/assets/screenshot.png" alt="Play Torrent" id="screenshot"></p>
 		<h1 id="installation">Installation</h1>
 		<ul>
 			<li>Install <a href="https://www.videolan.org/vlc">VLC</a></li>
