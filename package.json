@@ -48,7 +48,9 @@
 		"productName": "Play Torrent",
 		"files": [
 			"!docs",
-			"!assets/screenshot.png"
+			"!assets/screenshot.png",
+			"!LICENSE",
+			"!README.md"
 		],
 		"linux": {
 			"category": "AudioVideo;Video"
