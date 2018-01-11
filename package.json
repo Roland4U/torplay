@@ -46,6 +46,9 @@
 	"build": {
 		"appId": "com.samuelnovaes.playtorrent",
 		"productName": "Play Torrent",
+		"files": [
+			"!docs"
+		],
 		"linux": {
 			"category": "AudioVideo;Video"
 		},
