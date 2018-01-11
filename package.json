@@ -47,7 +47,8 @@
 		"appId": "com.samuelnovaes.playtorrent",
 		"productName": "Play Torrent",
 		"files": [
-			"!docs"
+			"!docs",
+			"!assets/screenshot.png"
 		],
 		"linux": {
 			"category": "AudioVideo;Video"
