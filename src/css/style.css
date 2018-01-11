@@ -74,7 +74,7 @@ body {
 	height: 200px;
 }
 
-.searchfield, .searchbutton {
+.searchfield, .searchbutton, .more {
 	border: none;
 	outline: none;
 	padding: 10px;
@@ -87,15 +87,19 @@ body {
 	width: 350px;
 }
 
-.searchbutton {
+.searchbutton, .more {
 	width: 50px;
 	cursor: pointer;
 	color: #555;
 }
 
-.searchbutton:hover {
+.searchbutton:hover, .more:hover {
 	background-color: #222;
 	color: #FFF;
+}
+
+.more {
+	margin: 10px;
 }
 
 .searchbutton * {

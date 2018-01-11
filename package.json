@@ -1,7 +1,7 @@
 {
 	"name": "play-torrent",
-	"version": "1.0.1",
-	"description": "Watch videos from The Pirate Bay",
+	"version": "1.0.2",
+	"description": "Play media from The Pirate Bay",
 	"main": "index.js",
 	"scripts": {
 		"start": "electron ."
@@ -13,6 +13,9 @@
 	"keywords": [
 		"video",
 		"movie",
+		"audio",
+		"music",
+		"media",
 		"torrent",
 		"the",
 		"pirate",
@@ -30,8 +33,9 @@
 		"electron": "^1.7.10"
 	},
 	"dependencies": {
+		"axios": "^0.17.1",
+		"cheerio": "^1.0.0-rc.2",
 		"peerflix": "^0.37.0",
-		"thepiratebay": "^1.4.6",
 		"vlc-command": "^1.1.1",
 		"vue": "^2.5.13"
 	},

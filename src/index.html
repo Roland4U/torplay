@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Play Torrent</title>
@@ -28,7 +28,7 @@
 			<div class="hbox searchbar">
 				<img src="img/logo.png" class="logo">
 				<form @submit="submit">
-					<input type="text" placeholder="Search video" class="searchfield" v-model="query" autofocus>
+					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus>
 					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
@@ -39,11 +39,13 @@
 						<span class="file-info">Leechers</span> {{file.leechers}}<br>
 						<span class="file-info">Seeders</span> {{file.seeders}}<br>
 						<span class="file-info">Size</span> {{file.size}}<br>
-						<span class="file-info">Category</span> {{file.subcategory.name}}<br>
+						<span class="file-info">Category</span> {{file.category}}<br>
+						<span class="file-info">Subcategory</span> {{file.subcategory}}<br>
 						<span class="file-info">Upload date</span> {{file.uploadDate}}<br>
 						<span class="file-info">Uploader</span> {{file.uploader}}<br>
 					</div>
 				</div>
+				<button class="more" v-if="more" @click="loadMore"><i class="fa fa-chevron-down"></i></button>
 				<div v-if="error" class="error">Network error</div>
 			</div>
 		</div>

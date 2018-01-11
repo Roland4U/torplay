@@ -1,5 +1,5 @@
 let Vue = require('vue/dist/vue.min.js')
-let PirateBay = require('thepiratebay')
+let search = require('./js/search.js')
 let play = require('./js/play.js')
 let command = require('vlc-command')
 
@@ -11,18 +11,11 @@ let vm = new Vue({
 		query: '',
 		novlc: false,
 		loading: false,
-		lockScroll: false,
 		ready: false,
 		error: false,
+		more: false
 	},
 	mounted(){
-		window.document.body.onscroll = () => {
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !this.lockScroll && !this.novlc && this.query) {
-				this.page++
-				this.lockScroll = true
-				this.search()
-			}
-		}
 		command((err, cmd) => {
 			if(err){
 				this.novlc = true
@@ -33,6 +26,7 @@ let vm = new Vue({
 	methods: {
 		submit(e){
 			if(this.query){
+				this.more = false
 				this.page = 0
 				this.files = []
 				this.search()
@@ -40,31 +34,35 @@ let vm = new Vue({
 			e.preventDefault()
 		},
 		search(){
-			this.showLoading()
-			PirateBay.search(this.query, {category: 'video', page: this.page}).then(results => {
+			this.loading = true
+			search(this.query, this.page).then(results => {
 				this.files = this.files.concat(results)
-				this.lockScroll = false
 				this.error = false
-				this.hideLoading()
-			}).catch(err => {
-				this.lockScroll = false
-				this.error = true
-				this.hideLoading()
+				this.loading = false
+				getMoreBtn()
 			})
+			.catch(err => {
+				this.error = true
+				this.loading = false
+				getMoreBtn()
+			})
+			let getMoreBtn = () => {
+				this.$nextTick(() => {
+					if(document.body.scrollHeight > innerHeight){
+						this.more = true
+					}
+				})
+			}
 		},
 		play(magnet){
-			this.showLoading()
+			this.loading = true
 			play(magnet).then(() => {
-				this.hideLoading()
+				this.loading = false
 			})
 		},
-		showLoading(){
-			document.body.style['overflow-y'] = 'hidden'
-			this.loading = true
-		},
-		hideLoading(){
-			document.body.style['overflow-y'] = 'visible'
-			this.loading = false
+		loadMore(){
+			this.page++
+			this.search()
 		}
 	}
 })

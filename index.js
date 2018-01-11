@@ -7,11 +7,12 @@ app.on('ready', () => {
 	let win = new BrowserWindow({
 		width: 640,
 		height: 480,
+		minWidth: 640,
+		minHeight: 480,
 		center: true,
 		icon: path.join(__dirname, 'assets', 'icon.png'),
 		backgroundColor: '#000',
-		title: 'Play Torrent',
-		resizable: false
+		title: 'Play Torrent'
 	})
 
 	win.loadURL(url.format({
