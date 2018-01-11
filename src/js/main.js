@@ -20,17 +20,18 @@ let vm = new Vue({
 			if(err){
 				this.novlc = true
 			}
+			else {
+				this.search()
+			}
 			this.ready = true
 		})
 	},
 	methods: {
 		submit(e){
-			if(this.query){
-				this.more = false
-				this.page = 0
-				this.files = []
-				this.search()
-			}
+			this.more = false
+			this.page = 0
+			this.files = []
+			this.search()
 			e.preventDefault()
 		},
 		search(){
@@ -61,10 +62,8 @@ let vm = new Vue({
 			})
 		},
 		loadMore(){
-			if(this.query){
-				this.page++
-				this.search()
-			}
+			this.page++
+			this.search()
 		}
 	}
 })
