@@ -4,7 +4,9 @@ let command = require('vlc-command')
 
 function startEngine(uri) {
 	return new Promise((resolve, reject) => {
-		let engine = peerflix(uri)
+		let engine = peerflix(uri, {
+			path: localStorage.downloads
+		})
 		engine.server.on('listening', () => {
 			resolve(engine)
 		})

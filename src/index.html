@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="app">
-		<div v-if="novlc" class="vbox fill">
+		<div v-if="novlc" class="vbox fill screen">
 			<div class="grow"></div>
 			<div class="hbox">
 				<div class="grow"></div>
@@ -24,13 +24,53 @@
 			</div>
 			<div class="grow"></div>
 		</div>
-		<div v-else-if="ready" class="vbox">
-			<div class="hbox searchbar">
+		<div v-else-if="settings" class="fill screen">
+			<div class="hbox topbar spacing">
+				<img src="img/logo.png" class="logo">
+				<h3>Settings</h3>
+			</div>
+			<div class="spacing">
+				Downloads directory:
+				<br>
+				<input type="text" class="input" v-model="downloads" id="f1" disabled></input>
+				<button class="btn" @click="selectDownloads"><i class="fa fa-folder-open"></i></button>
+				<br><br>
+				The Pirate Bay categories:
+				<br>
+				<input type="checkbox" value="100" id="c100" v-model="categories">
+				<label for="c100">Audio</label>
+				<br>
+				<input type="checkbox" value="200" id="c200" v-model="categories">
+				<label for="c200">Video</label>
+				<br>
+				<input type="checkbox" value="500" id="c500" v-model="categories">
+				<label for="c500">Porn</label>
+				<br><br>
+				Show on start:
+				<br>
+				<input type="radio" value="100" id="r100" v-model="top">
+				<label for="r100">Top audios</label>
+				<br>
+				<input type="radio" value="200" id="r200" v-model="top">
+				<label for="r200">Top videos</label>
+				<br>
+				<input type="radio" value="500" id="r500" v-model="top">
+				<label for="r500">Top porns</label>
+				<br>
+				<input type="radio" value="0" id="r0" v-model="top">
+				<label for="r0">Nothing</label>
+				<br><br>
+				<a href="#" @click="settings = false">Close settings</a>
+			</div>
+		</div>
+		<div v-else-if="ready" class="vbox screen">
+			<div class="hbox topbar spacing">
 				<img src="img/logo.png" class="logo">
 				<form @submit="submit">
-					<input type="text" placeholder="Search media" class="searchfield" v-model="query" autofocus>
-					<button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
+					<input type="text" placeholder="Search media or paste magnet link" class="input searchfield" v-model="query" autofocus>
+					<button type="submit" class="btn"><i class="fa fa-search"></i></button>
 				</form>
+				<button class="btn" @click="settings = true"><i class="fa fa-cog"></i></button>
 			</div>
 			<div class="vbox">
 				<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
@@ -45,7 +85,7 @@
 						<span class="file-info">Uploader</span> {{file.uploader}}<br>
 					</div>
 				</div>
-				<button class="more" v-if="more && query" @click="loadMore"><i class="fa fa-chevron-down"></i></button>
+				<button class="more btn" v-if="more && query" @click="loadMore"><i class="fa fa-chevron-down"></i></button>
 				<div v-if="error" class="error">Network error</div>
 			</div>
 		</div>

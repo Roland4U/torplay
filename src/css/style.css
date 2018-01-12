@@ -1,3 +1,5 @@
+/* LAYOUT */
+
 .hbox {
 	display: -webkit-flex;
 	display: flex;
@@ -29,12 +31,13 @@
 	overflow-y: visible;
 }
 
+/*APP*/
+
 @font-face {
 	font-family: roboto;
 	src: url(../fonts/roboto.ttf);
 }
 
-/*APP*/
 
 * {
 	-webkit-user-drag: none;
@@ -43,6 +46,7 @@
 	font-family: roboto, arial, sans-serif;
 	margin: 0;
 	padding: 0;
+	color: #fff;
 }
 
 ::-webkit-scrollbar {
@@ -50,7 +54,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #00FFFF;
+	background-color: #0FF;
 }
 
 body {
@@ -58,9 +62,41 @@ body {
 	overflow-x: hidden;
 }
 
-.searchbar {
-	padding: 10px;
+label {
+	font-size: 10pt;
+	color: #CCC;
+}
+
+input {
+	outline: none;
+	border: none;
+}
+
+a {
+	color: #0FF;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.topbar {
 	background-color: #333;
+	padding: 10px;
+	position: relative;
+}
+
+.topbar h3 {
+	position: absolute;
+	top: 50%;
+	left: 55px;
+	transform: translateY(-50%);
+}
+
+.spacing {
+	padding: 10px;
 }
 
 .logo {
@@ -74,35 +110,37 @@ body {
 	height: 200px;
 }
 
-.searchfield, .searchbutton, .more {
-	border: none;
+.input, .btn {
+	border: 1px solid #0FF;
 	outline: none;
 	padding: 10px;
-	background-color: #111;
-	color: #FFF;
+}
+
+.input {
+	cursor: text;
+	background-color: rgba(0,0,0,0);
 }
 
 .searchfield {
-	cursor: text;
 	width: 350px;
 }
 
-.searchbutton, .more {
+.btn {
 	width: 50px;
 	cursor: pointer;
-	color: #555;
+	margin-right: 4px;
+	background-color: #088;
 }
 
-.searchbutton:hover, .more:hover {
-	background-color: #222;
-	color: #FFF;
+.btn:hover {
+	background-color: #0CC;
 }
 
 .more {
 	margin: 10px;
 }
 
-.searchbutton *, .more * {
+.btn * {
 	cursor: pointer;
 }
 
@@ -121,11 +159,10 @@ body {
 }
 
 .filename {
-	color: #00FFFF;
+	color: #0FF;
 }
 
 .description {
-	color: #FFF;
 	font-size: 10pt;
 }
 
@@ -134,16 +171,11 @@ body {
 }
 
 .error {
-	color: #FFF;
 	text-align: center;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-
-.error-vlc {
-	color: #FFF;
 }
 
 .loader-bg {
@@ -165,13 +197,17 @@ body {
 	width: 50px;
 	height: 50px;
 	margin: -25px 0 0 -25px;
-	border: 5px solid #00FFFF;
+	border: 5px solid #0FF;
 	border-radius: 50%;
 	border-top: 5px solid rgba(0,0,0,0);
 	border-bottom: 5px solid rgba(0,0,0,0);
 	width: 50px;
 	height: 50px;
 	animation: spin .5s linear infinite;
+}
+
+.screen {
+	background-color: #000;
 }
 
 @keyframes spin {

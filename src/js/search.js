@@ -4,7 +4,8 @@ let {URL} = require('url')
 
 module.exports = function(query, page){
 	return new Promise((resolve, reject) => {
-		let url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/100,200,500` : 'https://thepiratebay.org/top/48h200')
+		let categories = JSON.parse(localStorage.categories)
+		let url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/${categories}` : `https://thepiratebay.org/top/48h${localStorage.top}`)
 		axios.get(url)
 		.then(result => {
 			let $ = cheerio.load(result.data)
