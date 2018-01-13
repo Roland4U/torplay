@@ -11,6 +11,7 @@ app.on('ready', () => {
 		minHeight: 480,
 		center: true,
 		icon: path.join(__dirname, 'assets', 'icon.png'),
+		backgroundColor: '#000',
 		title: 'Play Torrent'
 	})
 

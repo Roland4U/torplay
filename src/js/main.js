@@ -161,6 +161,16 @@ let vm = new Vue({
 				borderRightColor: this.theme.loading,
 				borderLeftColor: this.theme.loading
 			}
+		},
+		btnColorStyle(){
+			return {
+				borderColor: this.theme.bg
+			}
+		},
+		fieldsetStyle(){
+			return {
+				borderColor: this.theme.fg
+			}
 		}
 	},
 	watch: {

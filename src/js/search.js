@@ -8,7 +8,6 @@ module.exports = function(query, page){
 		let url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/${categories}` : `https://thepiratebay.org/top/48h${localStorage.top}`)
 		axios.get(url)
 		.then(result => {
-			console.log(result.data)
 			let $ = cheerio.load(result.data)
 			let files = $('#searchResult tr:not(.header)').map(function(){
 				let desc = $(this).find('font').text().split(', ')

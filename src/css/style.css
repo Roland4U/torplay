@@ -68,7 +68,8 @@ a:hover {
 
 input[type="color"] {
 	cursor: pointer;
-	-webkit-appearance: none;
+	border-width: 1px;
+	border-style: solid;
 }
 
 fieldset {
@@ -79,6 +80,10 @@ fieldset {
 	border-bottom: none;
 	border-left: none;
 	border-right: none;
+}
+
+legend {
+	padding: 3px;
 }
 
 .bg {

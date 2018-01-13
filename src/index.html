@@ -39,12 +39,12 @@
 				<div class="grow"></div>
 			</div>
 			<div v-else-if="settings">
-				<fieldset :style="{borderColor: theme.fg}">
+				<fieldset :style="fieldsetStyle">
 					<legend>Downloads directory</legend>
 					<input type="text" class="input" v-model="downloads" id="f1" :style="inputStyle"></input>
 					<button class="btn" @click="selectDownloads" :style="btnStyle"><i class="fa fa-folder-open"></i></button>
 				</fieldset>
-				<fieldset :style="{borderColor: theme.fg}">
+				<fieldset :style="fieldsetStyle">
 					<legend>The Pirate Bay categories</legend>
 					<input type="checkbox" value="100" id="cat100" v-model="categories">
 					<label for="cat100">Audio</label>
@@ -55,7 +55,7 @@
 					<input type="checkbox" value="500" id="cat500" v-model="categories">
 					<label for="cat500">Porn</label>
 				</fieldset>
-				<fieldset :style="{borderColor: theme.fg}">
+				<fieldset :style="fieldsetStyle">
 					<legend>Show on start</legend>
 					<input type="radio" value="100" id="start100" v-model="top">
 					<label for="start100">Top audios</label>
@@ -69,45 +69,45 @@
 					<input type="radio" value="0" id="start0" v-model="top">
 					<label for="start0">Nothing</label>
 				</fieldset>
-				<fieldset :style="{borderColor: theme.fg}">
+				<fieldset :style="fieldsetStyle">
 					<legend>Theme</legend>
-					<input type="color" id="colorbg" v-model="theme.bg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorbg" v-model="theme.bg" @change="setTheme">
 					<label for="colorbg">Background</label>
 					<br>
-					<input type="color" id="colorfg" v-model="theme.fg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorfg" v-model="theme.fg" @change="setTheme">
 					<label for="colorbg">Foreground</label>
 					<br>
-					<input type="color" id="colortopbg" v-model="theme.topbarbg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colortopbg" v-model="theme.topbarbg" @change="setTheme">
 					<label for="colortopbg">Topbar background</label>
 					<br>
-					<input type="color" id="colortopfg" v-model="theme.topbarfg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colortopfg" v-model="theme.topbarfg" @change="setTheme">
 					<label for="colortopfg">Topbar foreground</label>
 					<br>
-					<input type="color" id="colorbtnbg" v-model="theme.btnbg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorbtnbg" v-model="theme.btnbg" @change="setTheme">
 					<label for="colorbtnbg">Buttons background</label>
 					<br>
-					<input type="color" id="colorbtnfg" v-model="theme.btnfg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorbtnfg" v-model="theme.btnfg" @change="setTheme">
 					<label for="colorbtnfg">Buttons foreground</label>
 					<br>
-					<input type="color" id="colorbtnborder" v-model="theme.btnborder" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorbtnborder" v-model="theme.btnborder" @change="setTheme">
 					<label for="colorbtnborder">Buttons border</label>
 					<br>
-					<input type="color" id="colorinputbg" v-model="theme.inputbg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorinputbg" v-model="theme.inputbg" @change="setTheme">
 					<label for="colorinputbg">Inputs background</label>
 					<br>
-					<input type="color" id="colorinputfg" v-model="theme.inputfg" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorinputfg" v-model="theme.inputfg" @change="setTheme">
 					<label for="colorinputfg">Inputs foreground</label>
 					<br>
-					<input type="color" id="colorinputborder" v-model="theme.inputborder" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorinputborder" v-model="theme.inputborder" @change="setTheme">
 					<label for="colorinputborder">Inputs border</label>
 					<br>
-					<input type="color" id="colorlabels" v-model="theme.labels" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorlabels" v-model="theme.labels" @change="setTheme">
 					<label for="colorlabels">Labels</label>
 					<br>
-					<input type="color" id="colorlinks" v-model="theme.links" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorlinks" v-model="theme.links" @change="setTheme">
 					<label for="colorlinks">Links</label>
 					<br>
-					<input type="color" id="colorloading" v-model="theme.loading" @change="setTheme">
+					<input type="color" :style="btnColorStyle" id="colorloading" v-model="theme.loading" @change="setTheme">
 					<label for="colorloading">Progress</label>
 				</fieldset>
 			</div>
