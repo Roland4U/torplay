@@ -1,6 +1,6 @@
 {
 	"name": "play-torrent",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Play media from The Pirate Bay",
 	"main": "index.js",
 	"scripts": {

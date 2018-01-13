@@ -73,17 +73,18 @@ let vm = new Vue({
 			search(this.query, this.page).then(results => {
 				this.files = this.files.concat(results)
 				this.error = false
-				this.hideLoading()
 				getMoreBtn()
+				this.hideLoading()
 			})
 			.catch(err => {
 				this.error = true
-				this.hideLoading()
 				getMoreBtn()
+				this.hideLoading()
 			})
 			let getMoreBtn = () => {
+				let bg = document.querySelector('.bg')
 				this.$nextTick(() => {
-					if(document.body.scrollHeight > innerHeight){
+					if(bg.scrollHeight > bg.offsetHeight && this.query){
 						this.more = true
 					}
 				})

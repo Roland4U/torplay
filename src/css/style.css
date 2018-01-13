@@ -101,7 +101,7 @@ legend {
 .right {
 	position: absolute;
 	top: 50%;
-	right: 10px;
+	right: 11px;
 	transform: translateY(-50%);
 }
 
