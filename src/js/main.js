@@ -4,6 +4,7 @@ let play = require('./js/play.js')
 let command = require('vlc-command')
 let {dialog} = require('electron').remote
 let os = require('os')
+let bg
 
 let vm = new Vue({
 	el: '#app',
@@ -23,6 +24,7 @@ let vm = new Vue({
 		theme: {}
 	},
 	mounted(){
+		bg = document.querySelector('.bg')
 		let defaultTheme = {
 			bg: '#000000',
 			fg: '#FFFFFF',
@@ -82,7 +84,6 @@ let vm = new Vue({
 				this.hideLoading()
 			})
 			let getMoreBtn = () => {
-				let bg = document.querySelector('.bg')
 				this.$nextTick(() => {
 					if(bg.scrollHeight > bg.offsetHeight && this.query){
 						this.more = true
@@ -102,11 +103,11 @@ let vm = new Vue({
 		},
 		hideLoading(){
 			this.loading = false
-			document.body.style['overflow-y'] = 'visible'
+			bg.style['overflow-y'] = 'visible'
 		},
 		showLoading(){
 			this.loading = true
-			document.body.style['overflow-y'] = 'hidden'
+			bg.style['overflow-y'] = 'hidden'
 		},
 		selectDownloads(){
 			dialog.showOpenDialog({
@@ -165,7 +166,7 @@ let vm = new Vue({
 		},
 		btnColorStyle(){
 			return {
-				borderColor: this.theme.bg
+				borderColor: this.theme.fg
 			}
 		},
 		fieldsetStyle(){

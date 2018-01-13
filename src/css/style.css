@@ -67,8 +67,19 @@ a:hover {
 }
 
 input[type="color"] {
+	cursor: pointer;
 	border-width: 1px;
 	border-style: solid;
+	-webkit-appearance: none;
+	transform: translateY(7px);
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
 }
 
 fieldset {
