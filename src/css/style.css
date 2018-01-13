@@ -67,7 +67,6 @@ a:hover {
 }
 
 input[type="color"] {
-	cursor: pointer;
 	border-width: 1px;
 	border-style: solid;
 }

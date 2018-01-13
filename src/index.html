@@ -41,7 +41,7 @@
 			<div v-else-if="settings">
 				<fieldset :style="fieldsetStyle">
 					<legend>Downloads directory</legend>
-					<input type="text" class="input" v-model="downloads" id="f1" :style="inputStyle"></input>
+					<input type="text" class="input" v-model="downloads" id="f1" :style="inputStyle" disabled></input>
 					<button class="btn" @click="selectDownloads" :style="btnStyle"><i class="fa fa-folder-open"></i></button>
 				</fieldset>
 				<fieldset :style="fieldsetStyle">
