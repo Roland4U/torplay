@@ -27,10 +27,6 @@
 	flex: 1;
 }
 
-.scroll {
-	overflow-y: visible;
-}
-
 /*APP*/
 
 @font-face {
@@ -46,25 +42,14 @@
 	font-family: roboto, arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	color: #fff;
-}
-
-::-webkit-scrollbar {
-	background-color: #444;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: #0FF;
 }
 
 body {
-	background-color: #000;
 	overflow-x: hidden;
 }
 
 label {
 	font-size: 10pt;
-	color: #CCC;
 }
 
 input {
@@ -73,7 +58,6 @@ input {
 }
 
 a {
-	color: #0FF;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -82,10 +66,44 @@ a:hover {
 	text-decoration: underline;
 }
 
-.topbar {
-	background-color: #333;
+input[type="color"] {
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+fieldset {
+	margin: 10px;
 	padding: 10px;
-	position: relative;
+	border-style: solid;
+	border-width: 1px;
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+}
+
+.bg {
+	position: fixed;
+	top: 57px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: calc(100vh - 57px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.right {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+}
+
+.topbar {
+	padding: 10px;
+	position: fixed;
+	width: calc(100vw - 20px);
 }
 
 .topbar h3 {
@@ -100,8 +118,8 @@ a:hover {
 }
 
 .logo {
-	width: 35px;
-	height: 35px;
+	width: 37px;
+	height: 37px;
 	margin-right: 10px;
 }
 
@@ -111,14 +129,14 @@ a:hover {
 }
 
 .input, .btn {
-	border: 1px solid #0FF;
+	border-width: 1px;
+	border-style: solid;
 	outline: none;
 	padding: 10px;
 }
 
 .input {
 	cursor: text;
-	background-color: rgba(0,0,0,0);
 }
 
 .searchfield {
@@ -129,11 +147,8 @@ a:hover {
 	width: 50px;
 	cursor: pointer;
 	margin-right: 4px;
-	background-color: #088;
-}
-
-.btn:hover {
-	background-color: #0CC;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .more {
@@ -154,20 +169,12 @@ a:hover {
 	word-wrap: break-word;
 }
 
-.card:hover {
-	background-color: #111;
-}
-
-.filename {
-	color: #0FF;
+.card:hover .filename {
+	text-decoration: underline;
 }
 
 .description {
 	font-size: 10pt;
-}
-
-.file-info {
-	color: #088;
 }
 
 .error {
@@ -197,17 +204,11 @@ a:hover {
 	width: 50px;
 	height: 50px;
 	margin: -25px 0 0 -25px;
-	border: 5px solid #0FF;
+	border: 5px solid rgba(0,0,0,0);
 	border-radius: 50%;
-	border-top: 5px solid rgba(0,0,0,0);
-	border-bottom: 5px solid rgba(0,0,0,0);
 	width: 50px;
 	height: 50px;
 	animation: spin .5s linear infinite;
-}
-
-.screen {
-	background-color: #000;
 }
 
 @keyframes spin {

@@ -19,12 +19,30 @@ let vm = new Vue({
 		settings: false,
 		downloads: null,
 		categories: null,
-		top: null
+		top: null,
+		theme: {}
 	},
 	mounted(){
+		let defaultTheme = {
+			bg: '#000000',
+			fg: '#FFFFFF',
+			topbarbg: '#008888',
+			topbarfg: '#FFFFFF',
+			btnbg: '#333333',
+			btnfg: '#FFFFFF',
+			btnborder: '#00FFFF',
+			inputbg: '#FFFFFF',
+			inputfg: '#000000',
+			inputborder: '#FFFFFF',
+			labels: '#008888',
+			links: '#00FFFF',
+			loading: '#00FFFF'
+		}
+
 		this.downloads = localStorage.downloads || os.tmpdir()
 		this.categories = localStorage.categories ? JSON.parse(localStorage.categories) : ['100', '200', '500']
 		this.top = localStorage.top || '200'
+		this.theme = localStorage.theme ? JSON.parse(localStorage.theme) : defaultTheme
 
 		command((err, cmd) => {
 			this.ready = true
@@ -56,13 +74,20 @@ let vm = new Vue({
 				this.files = this.files.concat(results)
 				this.error = false
 				this.hideLoading()
-				this.more = true
+				getMoreBtn()
 			})
 			.catch(err => {
 				this.error = true
 				this.hideLoading()
-				this.more = true
+				getMoreBtn()
 			})
+			let getMoreBtn = () => {
+				this.$nextTick(() => {
+					if(document.body.scrollHeight > innerHeight){
+						this.more = true
+					}
+				})
+			}
 		},
 		play(magnet){
 			this.showLoading()
@@ -89,6 +114,53 @@ let vm = new Vue({
 			}, dir => {
 				this.downloads = localStorage.downloads = dir[0]
 			})
+		},
+		setTheme(){
+			localStorage.theme = JSON.stringify(this.theme)
+		}
+	},
+	computed: {
+		appStyle(){
+			return {
+				backgroundColor: this.theme.bg,
+				color: this.theme.fg
+			}
+		},
+		topbarStyle(){
+			return {
+				backgroundColor: this.theme.topbarbg,
+				color: this.theme.topbarfg,
+			}
+		},
+		inputStyle(){
+			return {
+				backgroundColor: this.theme.inputbg,
+				color: this.theme.inputfg,
+				borderColor: this.theme.inputborder
+			}
+		},
+		btnStyle(){
+			return {
+				backgroundColor: this.theme.btnbg,
+				color: this.theme.btnfg,
+				borderColor: this.theme.btnborder
+			}
+		},
+		labelsStyle(){
+			return {
+				color: this.theme.labels
+			}
+		},
+		linkStyle(){
+			return {
+				color: this.theme.links
+			}
+		},
+		loadingStyle(){
+			return {
+				borderRightColor: this.theme.loading,
+				borderLeftColor: this.theme.loading
+			}
 		}
 	},
 	watch: {

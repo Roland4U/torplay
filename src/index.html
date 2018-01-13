@@ -9,88 +9,129 @@
 </head>
 <body>
 	<div id="app">
-		<div v-if="novlc" class="vbox fill screen">
-			<div class="grow"></div>
-			<div class="hbox">
-				<div class="grow"></div>
-				<img src="img/vlc.png" class="vlc">
-				<div class="grow"></div>
-			</div>
-			<br>
-			<div class="hbox">
-				<div class="grow"></div>
-				<div class="error-vlc">VLC not found</div>
-				<div class="grow"></div>
-			</div>
-			<div class="grow"></div>
-		</div>
-		<div v-else-if="settings" class="fill screen">
-			<div class="hbox topbar spacing">
-				<img src="img/logo.png" class="logo">
+		<div class="topbar spacing hbox" :style="topbarStyle">
+			<img src="img/logo.png" class="logo">
+			<div v-if="settings" class="hbox">
 				<h3>Settings</h3>
+				<button class="btn right" @click="settings = false" :style="btnStyle"><i class="fa fa-close"></i></button></button>
 			</div>
-			<div class="spacing">
-				Downloads directory:
-				<br>
-				<input type="text" class="input" v-model="downloads" id="f1" disabled></input>
-				<button class="btn" @click="selectDownloads"><i class="fa fa-folder-open"></i></button>
-				<br><br>
-				The Pirate Bay categories:
-				<br>
-				<input type="checkbox" value="100" id="c100" v-model="categories">
-				<label for="c100">Audio</label>
-				<br>
-				<input type="checkbox" value="200" id="c200" v-model="categories">
-				<label for="c200">Video</label>
-				<br>
-				<input type="checkbox" value="500" id="c500" v-model="categories">
-				<label for="c500">Porn</label>
-				<br><br>
-				Show on start:
-				<br>
-				<input type="radio" value="100" id="r100" v-model="top">
-				<label for="r100">Top audios</label>
-				<br>
-				<input type="radio" value="200" id="r200" v-model="top">
-				<label for="r200">Top videos</label>
-				<br>
-				<input type="radio" value="500" id="r500" v-model="top">
-				<label for="r500">Top porns</label>
-				<br>
-				<input type="radio" value="0" id="r0" v-model="top">
-				<label for="r0">Nothing</label>
-				<br><br>
-				<a href="#" @click="settings = false">Close settings</a>
-			</div>
-		</div>
-		<div v-else-if="ready" class="vbox screen">
-			<div class="hbox topbar spacing">
-				<img src="img/logo.png" class="logo">
+			<div v-else class="hbox">
 				<form @submit="submit">
-					<input type="text" placeholder="Search media or paste magnet link" class="input searchfield" v-model="query" autofocus>
-					<button type="submit" class="btn"><i class="fa fa-search"></i></button>
+					<input type="text" placeholder="Search media or paste magnet link" class="input searchfield" v-model="query" :style="inputStyle" autofocus>
 				</form>
-				<button class="btn" @click="settings = true"><i class="fa fa-cog"></i></button>
-			</div>
-			<div class="vbox">
-				<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
-					<span class="filename">{{file.name}}</span><br>
-					<div class="description">
-						<span class="file-info">Leechers</span> {{file.leechers}}<br>
-						<span class="file-info">Seeders</span> {{file.seeders}}<br>
-						<span class="file-info">Size</span> {{file.size}}<br>
-						<span class="file-info">Category</span> {{file.category}}<br>
-						<span class="file-info">Subcategory</span> {{file.subcategory}}<br>
-						<span class="file-info">Upload date</span> {{file.uploadDate}}<br>
-						<span class="file-info">Uploader</span> {{file.uploader}}<br>
-					</div>
-				</div>
-				<button class="more btn" v-if="more && query" @click="loadMore"><i class="fa fa-chevron-down"></i></button>
-				<div v-if="error" class="error">Network error</div>
+				<button class="btn right" @click="settings = true" :style="btnStyle"><i class="fa fa-cog"></i></button>
 			</div>
 		</div>
-		<div v-if="loading" class="loader-bg">
-			<div class="loader"></div>
+		<div class="bg" :style="appStyle">
+			<div v-if="novlc" class="vbox fill">
+				<div class="grow"></div>
+				<div class="hbox">
+					<div class="grow"></div>
+					<img src="img/vlc.png" class="vlc">
+					<div class="grow"></div>
+				</div>
+				<br>
+				<div class="hbox">
+					<div class="grow"></div>
+					VLC not found
+					<div class="grow"></div>
+				</div>
+				<div class="grow"></div>
+			</div>
+			<div v-else-if="settings">
+				<fieldset :style="{borderColor: theme.fg}">
+					<legend>Downloads directory</legend>
+					<input type="text" class="input" v-model="downloads" id="f1" :style="inputStyle"></input>
+					<button class="btn" @click="selectDownloads" :style="btnStyle"><i class="fa fa-folder-open"></i></button>
+				</fieldset>
+				<fieldset :style="{borderColor: theme.fg}">
+					<legend>The Pirate Bay categories</legend>
+					<input type="checkbox" value="100" id="cat100" v-model="categories">
+					<label for="cat100">Audio</label>
+					<br>
+					<input type="checkbox" value="200" id="cat200" v-model="categories">
+					<label for="cat200">Video</label>
+					<br>
+					<input type="checkbox" value="500" id="cat500" v-model="categories">
+					<label for="cat500">Porn</label>
+				</fieldset>
+				<fieldset :style="{borderColor: theme.fg}">
+					<legend>Show on start</legend>
+					<input type="radio" value="100" id="start100" v-model="top">
+					<label for="start100">Top audios</label>
+					<br>
+					<input type="radio" value="200" id="start200" v-model="top">
+					<label for="start200">Top videos</label>
+					<br>
+					<input type="radio" value="500" id="start500" v-model="top">
+					<label for="start500">Top porns</label>
+					<br>
+					<input type="radio" value="0" id="start0" v-model="top">
+					<label for="start0">Nothing</label>
+				</fieldset>
+				<fieldset :style="{borderColor: theme.fg}">
+					<legend>Theme</legend>
+					<input type="color" id="colorbg" v-model="theme.bg" @change="setTheme">
+					<label for="colorbg">Background</label>
+					<br>
+					<input type="color" id="colorfg" v-model="theme.fg" @change="setTheme">
+					<label for="colorbg">Foreground</label>
+					<br>
+					<input type="color" id="colortopbg" v-model="theme.topbarbg" @change="setTheme">
+					<label for="colortopbg">Topbar background</label>
+					<br>
+					<input type="color" id="colortopfg" v-model="theme.topbarfg" @change="setTheme">
+					<label for="colortopfg">Topbar foreground</label>
+					<br>
+					<input type="color" id="colorbtnbg" v-model="theme.btnbg" @change="setTheme">
+					<label for="colorbtnbg">Buttons background</label>
+					<br>
+					<input type="color" id="colorbtnfg" v-model="theme.btnfg" @change="setTheme">
+					<label for="colorbtnfg">Buttons foreground</label>
+					<br>
+					<input type="color" id="colorbtnborder" v-model="theme.btnborder" @change="setTheme">
+					<label for="colorbtnborder">Buttons border</label>
+					<br>
+					<input type="color" id="colorinputbg" v-model="theme.inputbg" @change="setTheme">
+					<label for="colorinputbg">Inputs background</label>
+					<br>
+					<input type="color" id="colorinputfg" v-model="theme.inputfg" @change="setTheme">
+					<label for="colorinputfg">Inputs foreground</label>
+					<br>
+					<input type="color" id="colorinputborder" v-model="theme.inputborder" @change="setTheme">
+					<label for="colorinputborder">Inputs border</label>
+					<br>
+					<input type="color" id="colorlabels" v-model="theme.labels" @change="setTheme">
+					<label for="colorlabels">Labels</label>
+					<br>
+					<input type="color" id="colorlinks" v-model="theme.links" @change="setTheme">
+					<label for="colorlinks">Links</label>
+					<br>
+					<input type="color" id="colorloading" v-model="theme.loading" @change="setTheme">
+					<label for="colorloading">Progress</label>
+				</fieldset>
+			</div>
+			<div v-else-if="ready" class="vbox">
+				<div class="vbox">
+					<div class="card" v-for="(file, i) in files" :key="i" @click="play(file.magnetLink)">
+						<span class="filename" :style="linkStyle">{{file.name}}</span><br>
+						<div class="description">
+							<span class="file-info" :style="labelsStyle">Leechers</span> {{file.leechers}}<br>
+							<span class="file-info" :style="labelsStyle">Seeders</span> {{file.seeders}}<br>
+							<span class="file-info" :style="labelsStyle">Size</span> {{file.size}}<br>
+							<span class="file-info" :style="labelsStyle">Category</span> {{file.category}}<br>
+							<span class="file-info" :style="labelsStyle">Subcategory</span> {{file.subcategory}}<br>
+							<span class="file-info" :style="labelsStyle">Upload date</span> {{file.uploadDate}}<br>
+							<span class="file-info" :style="labelsStyle">Uploader</span> {{file.uploader}}<br>
+						</div>
+					</div>
+					<button class="more btn" v-if="more && query" @click="loadMore" :style="btnStyle"><i class="fa fa-chevron-down"></i></button>
+					<div v-if="error" class="error">Network error</div>
+				</div>
+			</div>
+			<div v-if="loading" class="loader-bg">
+				<div class="loader" :style="loadingStyle"></div>
+			</div>
 		</div>
 	</div>
 	<script src="js/main.js"></script>

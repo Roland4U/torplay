@@ -8,11 +8,12 @@ module.exports = function(query, page){
 		let url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/${categories}` : `https://thepiratebay.org/top/48h${localStorage.top}`)
 		axios.get(url)
 		.then(result => {
+			console.log(result.data)
 			let $ = cheerio.load(result.data)
 			let files = $('#searchResult tr:not(.header)').map(function(){
 				let desc = $(this).find('font').text().split(', ')
 				let name = $(this).find('a.detLink').text()
-				let uploadDate = desc[0].replace(/[a-z\s]+(.+)/i, '$1')
+				let uploadDate = desc[0].replace(/[a-z-\s]+(.+)/i, '$1')
 				let size = desc[1].replace(/[a-z\s]+(.+)/i, '$1')
 				let seeders = $(this).find('td[align="right"]').first().text()
 				let leechers = $(this).find('td[align="right"]').next().text()
