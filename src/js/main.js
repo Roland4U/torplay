@@ -32,7 +32,7 @@ let vm = new Vue({
 			topbarfg: '#FFFFFF',
 			btnbg: '#333333',
 			btnfg: '#FFFFFF',
-			btnborder: '#00FFFF',
+			btnborder: '#333333',
 			inputbg: '#FFFFFF',
 			inputfg: '#000000',
 			inputborder: '#FFFFFF',
