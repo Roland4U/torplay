@@ -32,10 +32,6 @@
 		"url": "https://github.com/samuelnovaes/play-torrent/issues"
 	},
 	"homepage": "https://github.com/samuelnovaes/play-torrent",
-	"devDependencies": {
-		"electron": "^1.7.10",
-		"electron-builder": "^19.52.1"
-	},
 	"dependencies": {
 		"axios": "^0.17.1",
 		"cheerio": "^1.0.0-rc.2",
@@ -59,5 +55,9 @@
 		"mac": {
 			"category": "public.app-category.video"
 		}
+	},
+	"devDependencies": {
+		"electron": "^1.7.11",
+		"electron-builder": "^19.54.0"
 	}
 }
