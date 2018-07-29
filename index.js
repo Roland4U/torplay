@@ -2,7 +2,6 @@ let { app, BrowserWindow } = require('electron')
 let path = require('path')
 
 app.on('ready', () => {
-
 	let win = new BrowserWindow({
 		width: 640,
 		height: 480,
