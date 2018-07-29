@@ -1,13 +1,13 @@
 {
 	"name": "play-torrent",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "Play media from The Pirate Bay",
 	"main": "index.js",
 	"scripts": {
 		"start": "electron .",
-		"linux": "electron-builder --linux --ia32 --x64",
-		"windows": "electron-builder --windows --ia32",
-		"mac": "electron-builder --mac"
+		"build-linux": "electron-builder --linux --ia32 --x64",
+		"build-windows": "electron-builder --windows --ia32",
+		"build-mac": "electron-builder --mac"
 	},
 	"repository": {
 		"type": "git",
@@ -33,9 +33,9 @@
 	},
 	"homepage": "https://github.com/samuelnovaes/play-torrent",
 	"dependencies": {
-		"axios": "^0.17.1",
+		"axios": "^0.18.0",
 		"cheerio": "^1.0.0-rc.2",
-		"peerflix": "^0.37.0",
+		"peerflix": "^0.39.0",
 		"vlc-command": "^1.1.1",
 		"vue": "^2.5.13"
 	},
@@ -43,21 +43,35 @@
 		"appId": "com.samuelnovaes.playtorrent",
 		"productName": "Play Torrent",
 		"files": [
-			"!docs",
+			"!icons",
 			"!assets/screenshot.png",
+			"!assets/icon.gvdesign",
 			"!LICENSE",
-			"!README.md",
-			"!icon.gvdesign"
+			"!README.md"
 		],
 		"linux": {
-			"category": "AudioVideo;Video"
+			"category": "AudioVideo;Video",
+			"icon": "icons/icon.png",
+			"target": [
+				"AppImage"
+			]
+		},
+		"win": {
+			"icon": "icons/icon.ico",
+			"target": [
+				"portable"
+			]
 		},
 		"mac": {
-			"category": "public.app-category.video"
+			"icon": "icons/icon.icns",
+			"category": "public.app-category.video",
+			"target": [
+				"dmg"
+			]
 		}
 	},
 	"devDependencies": {
-		"electron": "^1.8.2",
+		"electron": "^2.0.5",
 		"electron-builder": "^20.2.0"
 	}
 }

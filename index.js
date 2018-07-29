@@ -1,6 +1,5 @@
-let {app, BrowserWindow} = require('electron')
+let { app, BrowserWindow } = require('electron')
 let path = require('path')
-let url = require('url')
 
 app.on('ready', () => {
 
@@ -11,17 +10,16 @@ app.on('ready', () => {
 		minHeight: 480,
 		center: true,
 		icon: path.join(__dirname, 'assets', 'icon.png'),
-		backgroundColor: '#000',
 		resizable: false,
-		title: 'Play Torrent'
+		title: 'Play Torrent',
+		show: false
 	})
 
-	win.loadURL(url.format({
-		pathname: path.join(__dirname, 'src', 'index.html'),
-		slashes: true,
-		protocol: 'file'
-	}))
+	win.loadFile(path.join(__dirname, 'src', 'index.html'))
 
+	win.on('ready-to-show', () => {
+		win.show()
+	})
 })
 
 app.on('window-all-closed', () => {

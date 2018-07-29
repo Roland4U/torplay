@@ -1,25 +1,24 @@
-let axios = require('axios')
-let cheerio = require('cheerio')
-let {URL} = require('url')
+const axios = require('axios')
+const cheerio = require('cheerio')
+const { URL } = require('url')
 
-module.exports = function(query, page){
+module.exports = (query, page) => {
 	return new Promise((resolve, reject) => {
-		let categories = JSON.parse(localStorage.categories)
-		let url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/${categories}` : `https://thepiratebay.org/top/${localStorage.top}`)
-		axios.get(url)
-		.then(result => {
-			let $ = cheerio.load(result.data)
-			let files = $('#searchResult tr:not(.header)').map(function(){
-				let desc = $(this).find('font').text().split(', ')
-				let name = $(this).find('a.detLink').text()
-				let uploadDate = desc[0].replace(/[a-z-\s]+(.+)/i, '$1')
-				let size = desc[1].replace(/[a-z\s]+(.+)/i, '$1')
-				let seeders = $(this).find('td[align="right"]').first().text()
-				let leechers = $(this).find('td[align="right"]').next().text()
-				let magnetLink = $($(this).find('a')[3]).attr('href')
-				let uploader = $(this).find('font .detDesc').text() || 'Anonymous'
-				let category = $(this).find('center a').first().text()
-				let subcategory = $(this).find('center a').last().text()
+		const categories = JSON.parse(localStorage.categories)
+		const url = new URL(query ? `https://thepiratebay.org/search/${query}/${page}/99/${categories}` : `https://thepiratebay.org/top/${localStorage.top}`)
+		axios.get(url).then(result => {
+			const $ = cheerio.load(result.data)
+			const files = $('#searchResult tr:not(.header)').map(function () {
+				const desc = $(this).find('font').text().split(', ')
+				const name = $(this).find('a.detLink').text()
+				const uploadDate = desc[0].replace(/[a-z-\s]+(.+)/i, '$1')
+				const size = desc[1].replace(/[a-z\s]+(.+)/i, '$1')
+				const seeders = $(this).find('td[align="right"]').first().text()
+				const leechers = $(this).find('td[align="right"]').next().text()
+				const magnetLink = $($(this).find('a')[3]).attr('href')
+				const uploader = $(this).find('font .detDesc').text() || 'Anonymous'
+				const category = $(this).find('center a').first().text()
+				const subcategory = $(this).find('center a').last().text()
 				return {
 					name,
 					size,
@@ -33,9 +32,6 @@ module.exports = function(query, page){
 				}
 			})
 			resolve(files.get())
-		})
-		.catch(err => {
-			reject(err)
-		})
+		}).catch(reject)
 	})
 }

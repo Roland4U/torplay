@@ -1,12 +1,12 @@
-let Vue = require('vue/dist/vue.min.js')
-let search = require('./js/search.js')
-let play = require('./js/play.js')
-let command = require('vlc-command')
-let {dialog} = require('electron').remote
-let os = require('os')
+const Vue = require('vue/dist/vue.min.js')
+const search = require('./js/search.js')
+const play = require('./js/play.js')
+const command = require('vlc-command')
+const { dialog } = require('electron').remote
+const os = require('os')
 let bg
 
-let vm = new Vue({
+const vm = new Vue({
 	el: '#app',
 	data: {
 		files: [],
@@ -23,9 +23,9 @@ let vm = new Vue({
 		top: null,
 		theme: {}
 	},
-	mounted(){
+	mounted() {
 		bg = document.querySelector('.bg')
-		let defaultTheme = {
+		const defaultTheme = {
 			bg: '#000000',
 			fg: '#FFFFFF',
 			topbarbg: '#008888',
@@ -49,7 +49,7 @@ let vm = new Vue({
 		command((err, cmd) => {
 			this.ready = true
 			this.$nextTick
-			if(err){
+			if (err) {
 				this.novlc = true
 			}
 			else {
@@ -58,8 +58,8 @@ let vm = new Vue({
 		})
 	},
 	methods: {
-		submit(e){
-			if(/^magnet:\?xt=urn:btih:/.test(this.query)){
+		submit(e) {
+			if (/^magnet:\?xt=urn:btih:/.test(this.query)) {
 				this.play(this.query)
 			}
 			else {
@@ -70,7 +70,7 @@ let vm = new Vue({
 			}
 			e.preventDefault()
 		},
-		search(){
+		search() {
 			this.showLoading()
 			search(this.query, this.page).then(results => {
 				this.files = this.files.concat(results)
@@ -78,38 +78,38 @@ let vm = new Vue({
 				getMoreBtn()
 				this.hideLoading()
 			})
-			.catch(err => {
-				this.error = true
-				getMoreBtn()
-				this.hideLoading()
-			})
-			let getMoreBtn = () => {
+				.catch(err => {
+					this.error = true
+					getMoreBtn()
+					this.hideLoading()
+				})
+			const getMoreBtn = () => {
 				this.$nextTick(() => {
-					if(bg.scrollHeight > bg.offsetHeight && this.query){
+					if (bg.scrollHeight > bg.offsetHeight && this.query) {
 						this.more = true
 					}
 				})
 			}
 		},
-		play(magnet){
+		play(magnet) {
 			this.showLoading()
 			play(magnet).then(() => {
 				this.hideLoading()
 			})
 		},
-		loadMore(){
+		loadMore() {
 			this.page++
 			this.search()
 		},
-		hideLoading(){
+		hideLoading() {
 			this.loading = false
 			bg.style['overflow-y'] = 'visible'
 		},
-		showLoading(){
+		showLoading() {
 			this.loading = true
 			bg.style['overflow-y'] = 'hidden'
 		},
-		selectDownloads(){
+		selectDownloads() {
 			dialog.showOpenDialog({
 				defaultPath: os.homedir(),
 				properties: ['openDirectory']
@@ -117,69 +117,69 @@ let vm = new Vue({
 				this.downloads = localStorage.downloads = dir[0]
 			})
 		},
-		setTheme(){
+		setTheme() {
 			localStorage.theme = JSON.stringify(this.theme)
 		}
 	},
 	computed: {
-		appStyle(){
+		appStyle() {
 			return {
 				backgroundColor: this.theme.bg,
 				color: this.theme.fg
 			}
 		},
-		topbarStyle(){
+		topbarStyle() {
 			return {
 				backgroundColor: this.theme.topbarbg,
 				color: this.theme.topbarfg,
 			}
 		},
-		inputStyle(){
+		inputStyle() {
 			return {
 				backgroundColor: this.theme.inputbg,
 				color: this.theme.inputfg,
 				borderColor: this.theme.inputborder
 			}
 		},
-		btnStyle(){
+		btnStyle() {
 			return {
 				backgroundColor: this.theme.btnbg,
 				color: this.theme.btnfg,
 				borderColor: this.theme.btnborder
 			}
 		},
-		labelsStyle(){
+		labelsStyle() {
 			return {
 				color: this.theme.labels
 			}
 		},
-		linkStyle(){
+		linkStyle() {
 			return {
 				color: this.theme.links
 			}
 		},
-		loadingStyle(){
+		loadingStyle() {
 			return {
 				borderRightColor: this.theme.loading,
 				borderLeftColor: this.theme.loading
 			}
 		},
-		btnColorStyle(){
+		btnColorStyle() {
 			return {
 				borderColor: this.theme.fg
 			}
 		},
-		fieldsetStyle(){
+		fieldsetStyle() {
 			return {
 				borderColor: this.theme.fg
 			}
 		}
 	},
 	watch: {
-		categories(v){
+		categories(v) {
 			localStorage.categories = JSON.stringify(v)
 		},
-		top(v){
+		top(v) {
 			localStorage.top = v
 		}
 	}
